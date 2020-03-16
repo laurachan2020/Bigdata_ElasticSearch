@@ -1,10 +1,5 @@
-# STA9760 Analysis of Citibike Docks with Kibana and ElasticSearch
+# STA9760 Project 2 Insert Data into ElasticSearch
 
-Kibana docker compose example. **[Dataset used](https://feeds.citibikenyc.com/stations/stations.jso)**
-
-![scrnshot](https://raw.githubusercontent.com/mottaquikarim/STA9760_Kibana/master/Screen%20Shot%202020-03-02%20at%2012.26.53%20AM.png)
-
-## [Tutorial](https://www.youtube.com/watch?v=9Mkf6kHroG8&feature=youtu.be)
 
 ## How to Run
 
@@ -24,10 +19,14 @@ Both should load...something but will be empty as python has not yet run. If not
 Running python:
 
 ```
-docker-compose run pyth python tickets.py --
+docker-compose run pyth python tickets.py --page_size=10 --num_pages=2
+
+
 ```
 
-This will load citibike dock data into Elasticsearch at a cadence of once / 30s.
+This will violation parking data into Elasticsearch 
+
+sh test_curl.sh > output.txt
 
 Shutting off:
 

@@ -24,7 +24,7 @@ Both should load...something but will be empty as python has not yet run. If not
 Running python:
 
 ```
-docker-compose run pyth python citibike.py
+docker-compose run pyth python tickets.py --
 ```
 
 This will load citibike dock data into Elasticsearch at a cadence of once / 30s.

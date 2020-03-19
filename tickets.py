@@ -30,6 +30,9 @@ def insert_into_es(tickets, es):
 
 if __name__ == "__main__":
     app_key = environ.get("APP_KEY")
+    if not app_key:
+        app_key = 'gugOZ4hl1StXpGcH5DKjtLZiB'
+        
     es = create_and_update_index('violation-parking-index', 'vehicle')
 
     # print("APP_KEY={}".format(app_key))

@@ -24,16 +24,19 @@ def create_and_update_index(index_name, doc_type):
 
 def insert_into_es(tickets, es):
     for ticket in tickets:
-        ticket['issue_date'] = datetime.strptime(
-            ticket['issue_date'],
-            '%m/%d/%Y',
-        )
-        ticket['amount_due'] = float(ticket['amount_due'])
-        ticket['fine_amount'] = float(ticket['fine_amount'])
-        ticket['interest_amount'] = float(ticket['interest_amount'])
-        ticket['payment_amount'] = float(ticket['payment_amount'])
-        ticket['penalty_amount'] = float(ticket['penalty_amount'])
-        ticket['reduction_amount'] = float(ticket['reduction_amount'] )
+        try:
+            ticket['issue_date'] = datetime.strptime(
+                ticket['issue_date'],
+                '%m/%d/%Y',
+            )
+            ticket['amount_due'] = float(ticket['amount_due'])
+            ticket['fine_amount'] = float(ticket['fine_amount'])
+            ticket['interest_amount'] = float(ticket['interest_amount'])
+            ticket['payment_amount'] = float(ticket['payment_amount'])
+            ticket['penalty_amount'] = float(ticket['penalty_amount'])
+            ticket['reduction_amount'] = float(ticket['reduction_amount'] )
+        except Exception:
+            pass
         res = es.index(index='violation-parking-index', doc_type='vehicle', body=ticket, )
         print(res['result'])    
 

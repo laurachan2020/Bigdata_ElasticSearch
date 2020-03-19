@@ -30,7 +30,7 @@ docker-compose up -d
 
 docker-compose run pyth python tickets.py --page_size=1000 --num_pages=40
 
-This will violation parking data into Elasticsearch 
+The above command will load violation parking data into Elasticsearch.
 
 sh test_curl.sh > output.txt
 

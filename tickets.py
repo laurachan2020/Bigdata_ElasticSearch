@@ -2,7 +2,7 @@ from sys import argv
 from src.parkingviolations.api import Service
 from os import environ
 from elasticsearch import Elasticsearch
-
+from datetime import datetime
 
 def create_and_update_index(index_name, doc_type):
     es = Elasticsearch()
@@ -24,6 +24,16 @@ def create_and_update_index(index_name, doc_type):
 
 def insert_into_es(tickets, es):
     for ticket in tickets:
+        ticket['issue_date'] = datetime.strptime(
+            ticket['issue_date'],
+            '%m/%d/%Y',
+        )
+        ticket['amount_due'] = float(ticket['amount_due'])
+        ticket['fine_amount'] = float(ticket['fine_amount'])
+        ticket['interest_amount'] = float(ticket['interest_amount'])
+        ticket['payment_amount'] = float(ticket['payment_amount'])
+        ticket['penalty_amount'] = float(ticket['penalty_amount'])
+        ticket['reduction_amount'] = float(ticket['reduction_amount'] )
         res = es.index(index='violation-parking-index', doc_type='vehicle', body=ticket, )
         print(res['result'])    
 
@@ -32,7 +42,7 @@ if __name__ == "__main__":
     app_key = environ.get("APP_KEY")
     if not app_key:
         app_key = 'gugOZ4hl1StXpGcH5DKjtLZiB'
-        
+
     es = create_and_update_index('violation-parking-index', 'vehicle')
 
     # print("APP_KEY={}".format(app_key))

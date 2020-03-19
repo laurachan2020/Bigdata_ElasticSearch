@@ -35,10 +35,10 @@ def insert_into_es(tickets, es):
             ticket['payment_amount'] = float(ticket['payment_amount'])
             ticket['penalty_amount'] = float(ticket['penalty_amount'])
             ticket['reduction_amount'] = float(ticket['reduction_amount'] )
-        except Exception:
+        except KeyError:
             pass
         res = es.index(index='violation-parking-index', doc_type='vehicle', body=ticket, )
-        print(res['result'])    
+        print(res['result'])
 
 
 if __name__ == "__main__":

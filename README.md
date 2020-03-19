@@ -24,7 +24,7 @@ docker-compose down
 
 docker images
 
-docker rim bigdata2_pyth -f
+docker rmi bigdata2_pyth -f
 
 docker-compose up -d
 

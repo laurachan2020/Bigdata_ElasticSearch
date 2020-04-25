@@ -16,6 +16,8 @@ This will start ElasticSearch and Kibana.
 
 Both should load...something but will be empty as python has not yet run. If nothing shows up, give it a minute as it takes a bit of time for these services to load.
 
+export APP_KEY={MY_TOKEN}
+
 cd C:\project2\bigdata2
 
 git pull
